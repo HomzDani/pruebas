@@ -14,7 +14,7 @@ def adivina_el_numero():
         try:
             # pedir al ususario que ponga un numero 
             intento = int(input("Introduce un numero: "))
-            intentos = 1
+            intentos += 1
 
             # compara el numero escrito con el numero secreto
             if intento < numero_secreto:
@@ -25,15 +25,15 @@ def adivina_el_numero():
                 adivinado = True
                 print("felicidades adivinaste el numero en: {intentos} intentos.")
 
-    except ValueError:
-    print("por favor, ingrese un numero valido")
+        except ValueError:
+            print("por favor, ingrese un numero valido")
 
-# preguntar si quieres jugar de nuevo
-jugar_de_nuevo = input("quieres jugar de nuevo? (s/n): ").lower()
-if jugar_de_nuevo == 's':
-    adivina_el_numero()
-else:
-    print("gracias por jugar, asta luego")
+    # preguntar si quieres jugar de nuevo
+    jugar_de_nuevo = input("quieres jugar de nuevo? (s/n): ").lower()
+    if jugar_de_nuevo == 's':
+        adivina_el_numero()
+    else:
+        print("gracias por jugar, asta luego")
 
 # iniciar el juego
-adivina_el_numero
+adivina_el_numero()
