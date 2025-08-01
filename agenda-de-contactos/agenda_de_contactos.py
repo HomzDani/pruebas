@@ -1,6 +1,6 @@
 def crear_agenda():
     # Crear una agenda vacias
-    return
+    return[]
 
 def agregar_contacto(agenda, nombre, telefono, email):
     # agrega un nuevo contacto a la agenda
@@ -9,20 +9,23 @@ def agregar_contacto(agenda, nombre, telefono, email):
         'telefono': telefono,
         'email': email
     }
-    agenda.append(contacto)
+    agenda.append(contacto)  
     print(f"contacto {nombre} agregado correctamente.")
 
 def buscar_contacto(agenda, nombre):
     # busca un contacto por nombre
     for contacto in agenda:
         if contacto['nombre'].lower() == nombre.lower():
-            return None
+            return contacto
+    return None
+
 def mostrar_contacto(contacto):
+    # muestra la informacion de un contacto
     if contacto:
         print("informacion del contacto:")
-        print(f"nombre: {contacto["nombre"]}")
-        print(f"telefono: {contacto["telefono"]}")
-        print(f"email: {contacto["email"]}")
+        print(f"nombre: {contacto['nombre']}")
+        print(f"telefono: {contacto['telefono']}")
+        print(f"email: {contacto['email']}")
     else:
         print("contacto no encontrado.")
 
@@ -33,8 +36,8 @@ def mostrar_todos(agenda):
         return
     
     print("lista de contactos:")
-    for i, contactos in enumerate(agenda, 1):
-        print(f"{i}. {contacto["nombre"]} - {contacto['telefono']}")
+    for i, contacto in enumerate(agenda, 1):
+        print(f"{i}. {contacto['nombre']} - {contacto['telefono']}")
 
 def eliminar_contacto(agenda, nombre):
     # eliminar un contacto de la agenda
@@ -68,4 +71,23 @@ def main():
             agregar_contacto(agenda, nombre, telefono, email)
 
         elif opcion == '2':
-            nombre = 
+            nombre = input("nombre a buscar: ")
+            contacto = buscar_contacto(agenda, nombre)
+            mostrar_contacto(contacto)
+
+        elif opcion == '3':
+            mostrar_todos(agenda)
+
+        elif opcion == '4':
+            nombre = input("nombre a eliminar: ")
+            eliminar_contacto(agenda, nombre)
+
+        elif opcion == '5':
+            print("saliendo de la agenda...")
+            break
+
+        else:
+            print("opcion no valida. intentelo denuevo")
+
+if __name__ == "__main__":
+    main()
